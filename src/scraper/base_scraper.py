@@ -2,7 +2,9 @@ from abc import ABC, abstractmethod
 
 
 class BaseScraper(ABC):
-    df_data = None
+    df_bronze = None
+    df_silver = None
+    df_gold = None
 
     def __init__(self):
         pass
@@ -13,4 +15,8 @@ class BaseScraper(ABC):
 
     @abstractmethod
     def structuring_data(self):
+        pass
+
+    @abstractmethod
+    def run(self):
         pass
