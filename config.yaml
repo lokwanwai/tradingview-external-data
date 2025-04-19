@@ -1,0 +1,14 @@
+scrapers:
+  crypto_google_trend:
+    csv_dir: data/crypto_google_trend/
+    pine_script_path: data/crypto_google_trend/pinescript.txt
+    features: ['btc', 'eth', 'doge']
+  btc_vix:
+    csv_dir: data/btc_vix/
+    pine_script_path: data/btc_vix/pinescript.txt
+    features: [btc_vix]
+  crypto_youtuber_view:
+    csv_dir: data/crypto_youtuber_view/
+    pine_script_path: data/crypto_youtuber_view/pinescript.txt
+    features: ['btc', 'eth', 'doge']
+log_path: ''
