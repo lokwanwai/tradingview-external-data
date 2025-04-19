@@ -2,11 +2,9 @@ from abc import ABC, abstractmethod
 
 
 class BaseScraper(ABC):
-    df_bronze = None
-    df_silver = None
-    df_gold = None
-
     def __init__(self):
+        self.df_raw = None
+        self.df_formatted = None
         pass
 
     @abstractmethod

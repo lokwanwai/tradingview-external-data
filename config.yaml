@@ -1,14 +1,23 @@
 scrapers:
   crypto_google_trend:
-    csv_dir: data/crypto_google_trend/
-    pine_script_path: data/crypto_google_trend/pinescript.txt
+    data_dir: data/crypto_google_trend/
+    historical_data_filename: historical_data.csv
+    new_data_filename: new_data.csv
+    indicator_data_filename: indicator.csv
+    pine_script_path: pinescript.txt
     features: ['btc', 'eth', 'doge']
-  btc_vix:
-    csv_dir: data/btc_vix/
-    pine_script_path: data/btc_vix/pinescript.txt
+  btc_vix_ratio:
+    data_dir: data/btc_vix_ratio/
+    historical_data_filename: historical_data.csv
+    new_data_filename: new_data.csv
+    indicator_data_filename: indicator.csv
+    pine_script_path: pinescript.txt
     features: [btc_vix]
   crypto_youtuber_view:
-    csv_dir: data/crypto_youtuber_view/
-    pine_script_path: data/crypto_youtuber_view/pinescript.txt
+    data_dir: data/crypto_youtuber_view/
+    historical_data_filename: historical_data.csv
+    new_data_filename: new_data.csv
+    indicator_data_filename: indicator.csv
+    pine_script_path: pinescript.txt
     features: ['btc', 'eth', 'doge']
 log_path: ''

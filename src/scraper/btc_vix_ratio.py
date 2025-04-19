@@ -1,6 +1,5 @@
-from base_scraper import BaseScraper
-import pandas as pd
 import yfinance as yf
+from scraper.base_scraper import BaseScraper
 
 
 class BTCVixRatioScraper(BaseScraper):
@@ -15,29 +14,22 @@ class BTCVixRatioScraper(BaseScraper):
         :param end: 'YYYY-MM-DD'
         :return: DataFrame，每列為日期，每欄為收盤價
         """
-        df_bronze = yf.download(tickers)['Close']
-        return df_bronze
+        df_raw = yf.download(tickers)['Close']
+        return df_raw
 
     def structuring_data(self):
-        df = self.df_bronze.ffill()
-        df_silver = df.dropna()
-        return df_silver
-
-    def calculate_btc_vix_ratio(self):
-        """
-        計算BTC/VIX比值
-        :param df: 含BTC-USD與^VIX兩欄的DataFrame
-        :return: 新DataFrame，新增一欄'BTC_VIX_Ratio'
-        """
-        gold_data = self.df_silver.copy()
-        gold_data['BTC_VIX_Ratio'] = gold_data['BTC-USD'] / gold_data['^VIX']
-        return gold_data
+        df = self.df_raw.ffill()
+        df_formatted = df.dropna()
+        df_formatted.index.rename('datetime', inplace=True)
+        df_formatted.reset_index(inplace=True)
+        df_formatted.rename(
+            columns={'BTC-USD': 'BTCUSDT', '^VIX': 'VIX'}, inplace=True)
+        return df_formatted
 
     def run(self):
-        self.df_bronze = self.scrape_data(['BTC-USD', '^VIX'])
-        self.df_silver = self.structuring_data()
-        self.df_gold = self.calculate_btc_vix_ratio()
-        return self.df_gold
+        self.df_raw = self.scrape_data(['BTC-USD', '^VIX'])
+        self.df_formatted = self.structuring_data()
+        return self.df_formatted
 
 
 if __name__ == "__main__":
